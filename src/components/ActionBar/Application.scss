@@ -1,0 +1,21 @@
+.applications {
+  width: 30%;
+  width: 300px;
+  padding: 20px;
+  background-color: rgba(144, 132, 248, 0.3);
+
+  .applications-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    button {
+      border: none;
+      cursor: pointer;
+      background: transparent;
+      img {
+        width: 50px;
+        height: 50px;
+      }
+    }
+  }
+}

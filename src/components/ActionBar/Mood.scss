@@ -1,0 +1,51 @@
+.mood {
+  width: 50%;
+  padding: 20px;
+  background-color: rgba(248, 132, 144, 0.3);
+  .mood-params {
+    .status-smiley {
+      display: flex;
+      flex-direction: row;
+      .status {
+        display: flex;
+        flex-direction: column;
+        margin-right: 40px;
+        .connexion-status {
+          display: flex;
+          .greenCircle {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: green;
+            margin-right: 20px;
+          }
+          .orangeCircle {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: orange;
+            margin-right: 20px;
+          }
+          .redCircle {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: red;
+            margin-right: 20px;
+          }
+        }
+      }
+      .smiley {
+        .emoji-picker-react {
+          width: 400px;
+          height: 230px;
+        }
+      }
+    }
+    .message {
+      width: 600px;
+      height: 100px;
+      margin-top: 30px;
+    }
+  }
+}
