@@ -1,7 +1,9 @@
 .contacts {
   width: 20%;
   padding: 20px;
-  background-color: rgba(136, 248, 132, 0.3);
+  background: linear-gradient(rgba(136, 248, 132, 0.3), rgba(144, 40, 20, 0.3));
+
+  // background-color: rgba(136, 248, 132, 0.3);
 
   .contacts-list {
     .contact {
