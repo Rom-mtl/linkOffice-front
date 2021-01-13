@@ -14,6 +14,14 @@ const Board = () => {
       <div className="height" />
       <div className="nine" />
       <div className="ten" />
+      <div className="eleven" />
+      <div className="douze" />
+      <div className="treize" />
+      <div className="conf" />
+      <div className="cafe" />
+      <div className="canap" />
+      <div className="tapis" />
+      <div className="planteDeux" />
     </div>
   );
 };
