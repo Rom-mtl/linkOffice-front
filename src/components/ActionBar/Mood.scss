@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri&family=Noto+Sans+JP&display=swap%27');
+
+* {
+  font-family: 'Hind Siliguri', sans-serif;
+}
+h2 {
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+.mood {
+  width: 60%;
+  padding: 20px;
+  background-color: rgba(lightgray, 80%);
+
+  .mood-params {
+    .status-smiley {
+      display: flex;
+      flex-direction: row;
+      .status {
+        display: flex;
+        flex-direction: column;
+        margin-right: 40px;
+        .connexion-status {
+          display: flex;
+          .greenCircle {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: green;
+            margin-right: 20px;
+          }
+          .orangeCircle {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: orange;
+            margin-right: 20px;
+          }
+          .redCircle {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: red;
+            margin-right: 20px;
+          }
+        }
+      }
+      .smiley {
+        .emoji-picker-react {
+          width: 95%;
+          height: 230px;
+        }
+      }
+    }
+    .message {
+      width: 95%;
+      height: 100px;
+      margin-top: 30px;
+    }
+  }
+}
