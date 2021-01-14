@@ -1,5 +1,6 @@
 /* eslint-disable no-nested-ternary */
-import React, { useState } from 'react';
+
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import produce from 'immer';
@@ -11,17 +12,9 @@ import otherPlayer1 from '../../images/otherplayer1.png';
 import otherPlayer2 from '../../images/otherplayer2.png';
 import otherPlayer3 from '../../images/otherplayer3.png';
 
-// const axios = require('axios');
+const axios = require('axios');
 
 const avatarArray = [otherPlayer1, otherPlayer2, otherPlayer3];
-
-// const instance = axios.create({
-//   baseURL: 'http://wet-rabbit-57.loca.lt/',
-//   headers: {
-//     'Access-Control-Allow-Origin': '*',
-//   },
-// });
-// const config = { headers: { 'Access-Control-Allow-Origin': '*' } };
 
 const boardStyle = {
   width: '100%',
@@ -87,6 +80,7 @@ const Board = (props) => {
   const [isFiltered, setIsFiltered] = useState(true);
   const [isWrite, setIsWrite] = useState(true);
   const [isOnline, setIsOnline] = useState(true);
+  const [onlinePlayers, setOnlinePlayers] = useState([]);
   const { player } = props;
   const classes = useStyles();
   // getModalStyle is not a pure function, we roll the style only on the first render
@@ -94,10 +88,32 @@ const Board = (props) => {
   const [open, setOpen] = useState(false);
 
   // setInterval(() => {
-  //   instance.get('users/').then((res) => {
-  //     console.log(res);
-  //   });
   // }, 5000);
+
+  useEffect(() => {
+    setInterval(() => {
+      axios.get('http://wonderful-goat-74.loca.lt/users/').then((res) => {
+        setOnlinePlayers(res.data);
+      });
+    }, 1000);
+  }, []);
+
+  useEffect(() => {
+    const boardUpdated = myBoard.map((square) => {
+      for (let i = 0; i < onlinePlayers.length; i += 1) {
+        console.log(onlinePlayers[i].position);
+        console.log(square.id);
+
+        if (
+          parseInt(onlinePlayers[i].position, 10) === parseInt(square.id, 10)
+        ) {
+          return { ...square, otherPlayer: true };
+        }
+      }
+      return { ...square };
+    });
+    setmyBoard(boardUpdated);
+  }, [onlinePlayers]);
 
   const handlerFilter = () => {
     setIsFiltered(!isFiltered);
