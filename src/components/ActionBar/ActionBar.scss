@@ -1,6 +1,206 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri&family=Noto+Sans+JP&display=swap%27');
+
 .actionBar {
+  background-image: url('../../images/work.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: fixed;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 10px;
+  padding: 9px;
+}
+
+.onLine {
+  background-color: rgba(87, 87, 87, 0.431);
+  width: 50%;
+  height: 10vh;
+  border-radius: 20px;
+  padding: 2%;
+  display: flex;
+  flex-direction: row;
   justify-content: space-around;
-  margin: 10px;
+}
+
+.humeur {
+  background-color: rgba(87, 87, 87, 0.431);
+  margin-left: 10px;
+  height: 10vh;
+  width: 40%;
+  border-radius: 20px;
+  padding: 1% 2% 3% 2%;
+}
+
+.application {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: rgba(87, 87, 87, 0.431);
+  width: 70%;
+  height: 30vh;
+  margin-top: 10px;
+  border-radius: 20px;
+  padding: 2%;
+}
+
+.collegue {
+  background-color: rgba(87, 87, 87, 0.431);
+  margin-left: 10px;
+  width: 20%;
+  margin-top: 10px;
+  border-radius: 20px;
+  padding: 2%;
+}
+.hello {
+  letter-spacing: -1px;
+}
+
+.idName {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.auBoulot {
+  font-family: 'Hind Siliguri', sans-serif;
+  font-size: 15px;
+}
+
+.connexion-status {
+  background-color: rgba(255, 255, 255, 0.609);
+  margin: 0 5px;
+  width: 21%;
+  display: flex;
+  font-family: 'Noto Sans JP', sans-serif;
+  padding: 13px 10px;
+  border-radius: 40px;
+  font-size: 15px;
+  font-weight: bold;
+  box-shadow: inset -2px -2px 4px rgba(255, 255, 255, 0.5),
+    inset 2px 2px 4px rgba(170, 170, 204, 0.25),
+    inset 5px 5px 10px rgba(170, 170, 204, 0.5), inset -5px -5px 10px #ffffff;
+  cursor: pointer;
+}
+.connexion-status:hover {
+  box-shadow: inset 0px 4px 4px;
+}
+.connexion-status:active {
+  color: grey;
+}
+
+.greenCircle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: green;
+  margin-right: 20px;
+}
+.orangeCircle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: orange;
+  margin-right: 20px;
+}
+
+.redCircle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: red;
+  margin-right: 20px;
+}
+
+.contact {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.contact-picker {
+  font-size: 30px;
+  margin-right: 10px;
+}
+.contact-status {
+  margin-right: 20px;
+  width: 29px;
+  height: 29px;
+  border-radius: 50%;
+  background-color: green;
+}
+
+.titleCollegue {
+  font-family: 'Noto Sans JP', sans-serif;
+  color: black;
+  text-decoration: underline;
+}
+
+.contact-name {
+  font-family: 'Hind Siliguri', sans-serif;
+  font-size: 20px;
+  color: white;
+  font-weight: bold;
+}
+
+.applications-grid {
+  display: flex;
+  justify-content: space-between;
+}
+
+.applications-grid:focus {
+  outline: none;
+}
+
+.appTitle {
+  margin: 0;
+  font-family: 'Noto Sans JP', sans-serif;
+  color: black;
+  text-decoration: underline;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  background: transparent;
+}
+img {
+  width: 50px;
+  height: 50px;
+}
+
+button:focus {
+  outline: none;
+  cursor: pointer;
+}
+
+.spanEmoji {
+  min-width: 10%;
+  font-family: 'Noto Sans JP', sans-serif;
+  color: rgb(209, 176, 84);
+  font-weight: bold;
+  font-size: 57px;
+  line-height: 4px;
+}
+
+.emoji-picker-react {
+  height: 245px;
+  border-radius: 20px;
+  width: 20%;
+}
+.boiteEmoji {
+  height: 20vh;
+}
+
+.message {
+  font-family: 'Hind Siliguri', sans-serif;
+  width: 40%;
+  border-radius: 20px;
+  padding: 10px;
+  border: none;
+  font-size: 20px;
+}
+
+.message:focus {
+  outline: none;
 }

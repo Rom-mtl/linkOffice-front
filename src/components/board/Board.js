@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import produce from 'immer';
+import ActionBar from '../ActionBar/ActionBar';
 import './Board.css';
 
 const boardStyle = {
@@ -126,6 +127,7 @@ const Board = () => {
           onClick={handlerOnLine}
         />
       </div>
+      <ActionBar />
     </div>
   );
 };
