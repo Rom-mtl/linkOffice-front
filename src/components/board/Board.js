@@ -1,5 +1,5 @@
 /* eslint-disable no-nested-ternary */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import produce from 'immer';
 import './Board.css';
 import myPlayer from '../../images/bob.png';
@@ -12,12 +12,8 @@ const axios = require('axios');
 const avatarArray = [otherPlayer1, otherPlayer2, otherPlayer3];
 
 const instance = axios.create({
-  baseURL: 'http://wet-rabbit-57.loca.lt/',
-  headers: {
-    'Access-Control-Allow-Origin': '*',
-  },
+  baseURL: 'http://wonderful-goat-74.loca.lt/',
 });
-// const config = { headers: { 'Access-Control-Allow-Origin': '*' } };
 
 const boardStyle = {
   width: '100%',
@@ -56,13 +52,36 @@ const Board = (props) => {
   const [isFiltered, setIsFiltered] = useState(true);
   const [isWrite, setIsWrite] = useState(true);
   const [isOnline, setIsOnline] = useState(true);
+  const [onlinePlayers, setOnlinePlayers] = useState([]);
   const { player } = props;
 
-  setInterval(() => {
-    instance.get('users/').then((res) => {
-      console.log(res);
+  // setInterval(() => {
+  // }, 5000);
+
+  useEffect(() => {
+    setInterval(() => {
+      axios.get('http://wonderful-goat-74.loca.lt/users/').then((res) => {
+        setOnlinePlayers(res.data);
+      });
+    }, 1000);
+  }, []);
+
+  useEffect(() => {
+    const boardUpdated = myBoard.map((square) => {
+      for (let i = 0; i < onlinePlayers.length; i += 1) {
+        console.log(onlinePlayers[i].position);
+        console.log(square.id);
+
+        if (
+          parseInt(onlinePlayers[i].position, 10) === parseInt(square.id, 10)
+        ) {
+          return { ...square, otherPlayer: true };
+        }
+      }
+      return { ...square };
     });
-  }, 5000);
+    setmyBoard(boardUpdated);
+  }, [onlinePlayers]);
 
   const handlerFilter = () => {
     setIsFiltered(!isFiltered);

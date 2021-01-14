@@ -29,7 +29,7 @@
   background-repeat: repeat;
   display: grid;
   height: 800px;
-  width: 100%;
+  width: 1345px;
   grid-template-columns: repeat(12, 112px);
   grid-auto-rows: auto;
   background-color: lightblue;
