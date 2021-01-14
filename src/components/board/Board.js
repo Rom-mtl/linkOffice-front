@@ -6,6 +6,7 @@ const Board = () => {
   useEffect(() => {
     const grid = document.querySelector('.wrapper');
     grid.addEventListener('click', (e) => {
+      console.log(e.target);
       if (e.target.innerHTML.length < 30) {
         setObject(e.target.innerHTML);
       }
