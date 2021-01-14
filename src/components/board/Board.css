@@ -1,7 +1,7 @@
 .wrapper {
-  margin-left: 7%;
   background-image: url('../../images/parquet3.jpg');
   background-size: 10%;
+  margin-left: 10%;
   background-repeat: repeat;
   display: grid;
   height: 800px;
@@ -11,6 +11,7 @@
   background-color: lightblue;
   grid-template-rows: repeat(14, 1fr);
   border: solid 11px black;
+  font-size: 0;
 }
 .one {
   grid-column: 1 / 3;
@@ -18,6 +19,7 @@
   background-image: url('../../images/meuble1.png');
   background-size: contain;
   background-repeat: no-repeat;
+  cursor: pointer;
 }
 .two {
   grid-column: 3 / 5;
@@ -25,6 +27,7 @@
   background-image: url('../../images/bureau.png');
   background-size: contain;
   background-repeat: no-repeat;
+  cursor: pointer;
 }
 .three {
   grid-column: 7 / 9;
@@ -32,6 +35,7 @@
   background-image: url('../../images/bureau.png');
   background-size: contain;
   background-repeat: no-repeat;
+  cursor: pointer;
 }
 .four {
   grid-column: 5 / 7;
@@ -39,6 +43,7 @@
   background-image: url('../../images/bureau.png');
   background-size: contain;
   background-repeat: no-repeat;
+  cursor: pointer;
 }
 .five {
   grid-column: 7 / 9;
@@ -46,6 +51,7 @@
   background-image: url('../../images/bureau.png');
   background-size: contain;
   background-repeat: no-repeat;
+  cursor: pointer;
 }
 .six {
   grid-column: 4 / 7;
@@ -53,6 +59,7 @@
   background-image: url('../../images/bureau.png');
   background-size: contain;
   background-repeat: no-repeat;
+  cursor: pointer;
 }
 .seven {
   grid-column: 1 / 3;
@@ -60,6 +67,7 @@
   background-image: url('../../images/meuble2.png');
   background-size: contain;
   background-repeat: no-repeat;
+  cursor: pointer;
 }
 .height {
   grid-column: 1 / 3;
@@ -67,6 +75,7 @@
   background-image: url('../../images/plante1.png');
   background-size: contain;
   background-repeat: no-repeat;
+  cursor: pointer;
 }
 .nine {
   grid-column: 1 / 6;
@@ -74,6 +83,7 @@
   background-image: url('../../images/brique.png');
   background-size: contain;
   background-repeat: repeat;
+  cursor: pointer;
 }
 .ten {
   grid-column: 2 /4;
@@ -81,6 +91,7 @@
   background-image: url('../../images/bureauChef.png');
   background-size: contain;
   background-repeat: no-repeat;
+  cursor: pointer;
 }
 .eleven {
   grid-column: 8 / 13;
@@ -88,6 +99,7 @@
   background-image: url('../../images/brique.png');
   background-size: contain;
   background-repeat: repeat;
+  cursor: pointer;
 }
 .douze {
   grid-column: 11 / 13;
@@ -95,6 +107,7 @@
   background-image: url('../../images/cartons.png');
   background-size: contain;
   background-repeat: no-repeat;
+  cursor: pointer;
 }
 .treize {
   grid-column: 12 / 13;
@@ -102,6 +115,7 @@
   background-image: url('../../images/paperboard.png');
   background-size: contain;
   background-repeat: no-repeat;
+  cursor: pointer;
 }
 .conf {
   grid-column: 8 / 12;
@@ -109,6 +123,7 @@
   background-image: url('../../images/conf.png');
   background-size: contain;
   background-repeat: no-repeat;
+  cursor: pointer;
 }
 .canap {
   grid-column: 10 / 14;
@@ -116,6 +131,7 @@
   background-image: url('../../images/canap.png');
   background-size: contain;
   background-repeat: no-repeat;
+  cursor: pointer;
 }
 .cafe {
   grid-column: 10 / 13;
@@ -123,6 +139,7 @@
   background-image: url('../../images/cafe.png');
   background-size: contain;
   background-repeat: no-repeat;
+  cursor: pointer;
 }
 .tapis {
   grid-column: 6 / 8;
@@ -130,6 +147,7 @@
   background-image: url('../../images/tapis.png');
   background-size: contain;
   background-repeat: no-repeat;
+  cursor: pointer;
 }
 .planteDeux {
   grid-column: 5 / 6;
@@ -137,4 +155,30 @@
   background-image: url('../../images/plante2.png');
   background-size: contain;
   background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.boardContainer {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+#cursorInfo {
+  height: 30px;
+  width: 150px;
+  margin-left: 20px;
+  border-radius: 10px;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+#objectInfo {
+  height: 200px;
+  width: 150px;
+  margin-left: 20px;
+  border-radius: 10px;
 }
