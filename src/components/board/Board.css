@@ -1,6 +1,7 @@
 .wrapper {
   background-image: url('../../images/parquet3.jpg');
   background-size: 10%;
+  margin-left: 10%;
   background-repeat: repeat;
   display: grid;
   height: 800px;
@@ -25,6 +26,7 @@
   background-image: url('../../images/bureau.png');
   background-size: contain;
   background-repeat: no-repeat;
+  cursor: pointer;
 }
 .three {
   grid-column: 7 / 9;
@@ -32,6 +34,7 @@
   background-image: url('../../images/bureau.png');
   background-size: contain;
   background-repeat: no-repeat;
+  cursor: pointer;
 }
 .four {
   grid-column: 5 / 7;
@@ -39,6 +42,7 @@
   background-image: url('../../images/bureau.png');
   background-size: contain;
   background-repeat: no-repeat;
+  cursor: pointer;
 }
 .five {
   grid-column: 7 / 9;
@@ -46,6 +50,7 @@
   background-image: url('../../images/bureau.png');
   background-size: contain;
   background-repeat: no-repeat;
+  cursor: pointer;
 }
 .six {
   grid-column: 4 / 7;
@@ -53,6 +58,7 @@
   background-image: url('../../images/bureau.png');
   background-size: contain;
   background-repeat: no-repeat;
+  cursor: pointer;
 }
 .seven {
   grid-column: 1 / 2;
@@ -77,6 +83,7 @@
   background-image: url('../../images/brique2.png');
   background-size: contain;
   background-repeat: repeat;
+  cursor: pointer;
 }
 .ten {
   grid-column: 2 /4;
@@ -84,6 +91,7 @@
   background-image: url('../../images/bureauChef.png');
   background-size: contain;
   background-repeat: no-repeat;
+  cursor: pointer;
 }
 .thomas {
   grid-column: 2 / 3;
@@ -115,6 +123,7 @@
   background-image: url('../../images/brique2.png');
   background-size: contain;
   background-repeat: repeat;
+  cursor: pointer;
 }
 .douze {
   grid-column: 11 / 13;
@@ -122,6 +131,7 @@
   background-image: url('../../images/cartons.png');
   background-size: contain;
   background-repeat: no-repeat;
+  cursor: pointer;
 }
 .gamePointer {
   grid-column: 11 / 13;
@@ -129,6 +139,7 @@
   background-image: url('../../images/gamePointer.png');
   background-size: contain;
   background-repeat: no-repeat;
+  cursor: pointer;
 }
 
 .conf {
@@ -160,6 +171,7 @@
   background-image: url('../../images/canap2.png');
   background-size: contain;
   background-repeat: no-repeat;
+  cursor: pointer;
 }
 .cafe {
   grid-column: 10 / 13;
@@ -167,6 +179,7 @@
   background-image: url('../../images/cafe.png');
   background-size: contain;
   background-repeat: no-repeat;
+  cursor: pointer;
 }
 
 .treize {
@@ -191,6 +204,7 @@
   background-image: url('../../images/tapis.png');
   background-size: contain;
   background-repeat: no-repeat;
+  cursor: pointer;
 }
 .planteDeux {
   grid-column: 5 / 6;
