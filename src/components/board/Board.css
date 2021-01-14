@@ -70,7 +70,7 @@
   background-image: url('../../images/bureau.png');
   background-size: contain;
   background-repeat: no-repeat;
-  z-index: 3;
+  z-index: 5;
   cursor: pointer;
 }
 .five {
