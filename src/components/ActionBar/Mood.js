@@ -11,7 +11,7 @@ const Mood = () => {
 
   return (
     <div className="mood">
-      <h2>Votre mood</h2>
+      <h2>Humeur du jour ?</h2>
       <div className="mood-params">
         <div className="status-smiley">
           <div className="status">
@@ -25,7 +25,7 @@ const Mood = () => {
             </div>
             <div className="connexion-status">
               <p className="redCircle" />
-              <p>Ne pas déranger</p>
+              <p>Pas dispo</p>
             </div>
           </div>
           <div className="smiley">

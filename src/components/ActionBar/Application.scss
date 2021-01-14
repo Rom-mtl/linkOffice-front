@@ -1,7 +1,8 @@
 .applications {
-  width: 30%;
+  width: 20%;
   padding: 20px;
-  background: linear-gradient(rgba(144, 132, 248, 0.3), rgba(144, 40, 20, 0.3));
+  margin-left: 10px;
+  background-color: rgba(lightgray, 80%);
 
   .applications-grid {
     display: grid;

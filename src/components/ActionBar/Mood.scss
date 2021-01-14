@@ -1,9 +1,17 @@
-.mood {
-  width: 50%;
-  padding: 20px;
-  background: linear-gradient(rgba(248, 132, 144, 0.3), rgba(144, 40, 20, 0.3));
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri&family=Noto+Sans+JP&display=swap%27');
 
-  // background-color: rgba(248, 132, 144, 0.3);
+* {
+  font-family: 'Hind Siliguri', sans-serif;
+}
+h2 {
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+.mood {
+  width: 60%;
+  padding: 20px;
+  background-color: rgba(lightgray, 80%);
+
   .mood-params {
     .status-smiley {
       display: flex;
