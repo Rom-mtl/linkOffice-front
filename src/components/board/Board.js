@@ -17,7 +17,7 @@ const boardStyle = {
   display: 'grid',
   gridTemplateColumns: 'repeat(12, 112px)',
   gridAutoRows: '200px',
-  gridTemplateRows: 'repeat(14, 52px)',
+  gridTemplateRows: 'repeat(14, 57px)',
   marginBottom: '10px',
   position: 'absolute',
   zIndex: '2',
