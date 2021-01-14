@@ -1,17 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri&family=Noto+Sans+JP&display=swap%27');
 
 .backgroundHome {
-  background: radial-gradient(
-    50% 50% at 50% 50%,
-    rgba(0, 0, 0, 0) 0%,
-    #000000 100%
-  );
+  background-image: url('../../images/work.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: fixed;
   width: 100%;
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  text-align: center;
+}
+.backTitle {
+  background-color: rgba(255, 251, 251, 0.726);
+  border-radius: 20px;
+  padding: 20px;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  margin-left: 22%;
 }
 
 .logo {
@@ -19,11 +29,13 @@
   background-size: contain;
   background-repeat: no-repeat;
   height: 30vh;
-  width: 30vw;
+  width: 56%;
 }
 
 .titleHome {
   font-family: 'Hind Siliguri', sans-serif;
+  margin: 0;
+  font-size: 1.2em;
 }
 
 #inputEnter {
@@ -35,9 +47,10 @@
     inset 2px 2px 4px rgba(170, 170, 204, 0.25),
     inset 5px 5px 10px rgba(170, 170, 204, 0.5), inset -5px -5px 10px #ffffff;
   border-radius: 40px;
-  width: 20%;
+  width: 40%;
   border: none;
   padding: 10px;
+  margin-top: 20px;
 }
 #inputEnter:focus {
   outline: none;
@@ -63,4 +76,16 @@
 }
 .buttonEnter:hover {
   box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.gif {
+  background-image: url('../../images/pied.gif');
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 10vh;
+  width: 10vw;
+  right: 31%;
+  top: 42%;
+  z-index: 2;
+  position: absolute;
 }
