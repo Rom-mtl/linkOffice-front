@@ -29,6 +29,21 @@ board[0].currentPlayer = true;
 const Board = () => {
   const [myBoard, setmyBoard] = useState(board);
   const [playerPosition, setPlayerPosition] = useState(0);
+  const [isFiltered, setIsFiltered] = useState(true);
+  const [isWrite, setIsWrite] = useState(true);
+  const [isOnline, setIsOnline] = useState(true);
+
+  const handlerFilter = () => {
+    setIsFiltered(!isFiltered);
+  };
+
+  const handlerWrite = () => {
+    setIsWrite(!isWrite);
+  };
+
+  const handlerOnLine = () => {
+    setIsOnline(!isOnline);
+  };
 
   const changeSquareContent = (id) => {
     const nextState = produce(myBoard, (draftState) => {
@@ -83,11 +98,33 @@ const Board = () => {
         <div className="eleven" />
         <div className="douze" />
         <div className="treize" />
-        <div className="conf" />
+        <button
+          label="text"
+          className={!isWrite ? 'conf' : 'conf2'}
+          type="button"
+          onClick={handlerWrite}
+        />
         <div className="cafe" />
         <div className="canap" />
         <div className="tapis" />
-        <div className="planteDeux" />
+        <div className="murTop" />
+        <div className="murBottom" />
+        <div className="murLeft" />
+        <div className="murRight" />
+        <div className="cafePointer" />
+        <div className="gamePointer" />
+        <button
+          label="text"
+          className={!isFiltered ? 'planteDeux' : 'planteFane'}
+          type="button"
+          onClick={handlerFilter}
+        />
+        <button
+          label="text"
+          className={!isOnline ? 'thomas' : 'Thomas2'}
+          type="button"
+          onClick={handlerOnLine}
+        />
       </div>
     </div>
   );
