@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import produce from 'immer';
 import './Board.css';
-import player from '../../images/bob.png';
+import myPlayer from '../../images/bob.png';
 import otherPlayer1 from '../../images/otherplayer1.png';
 import otherPlayer2 from '../../images/otherplayer2.png';
 import otherPlayer3 from '../../images/otherplayer3.png';
@@ -15,9 +15,9 @@ const boardStyle = {
   width: '100%',
   height: '800px',
   display: 'grid',
-  gridTemplateColumns: 'repeat(12, 1fr)',
+  gridTemplateColumns: 'repeat(12, 112px)',
   gridAutoRows: '200px',
-  gridTemplateRows: 'repeat(14, 1fr)',
+  gridTemplateRows: 'repeat(14, 52px)',
   marginBottom: '10px',
   position: 'absolute',
   zIndex: '2',
@@ -48,10 +48,10 @@ const Board = (props) => {
   const [isFiltered, setIsFiltered] = useState(true);
   const [isWrite, setIsWrite] = useState(true);
   const [isOnline, setIsOnline] = useState(true);
-  const { pseudo } = props;
+  const { player } = props;
 
   setInterval(() => {
-    axios.get('adresse-url').then((res) => {
+    axios.get('https://chilly-mayfly-63.loca.lt/users/').then((res) => {
       console.log(res);
     });
   }, 5000);
@@ -79,10 +79,14 @@ const Board = (props) => {
       // eslint-disable-next-line no-param-reassign
       draftState[id].currentPlayer = true;
 
-      axios.post('adresse.url', { name: '' }).then((res) => {
-        console.log(res);
-        // poster le numéro de sa case
-      });
+      axios
+        .post(`https://chilly-mayfly-63.loca.lt/users/${player.pseudo}/edit`, {
+          name: '',
+        })
+        .then((res) => {
+          console.log(res);
+          // poster le numéro de sa case
+        });
     });
     setmyBoard(nextState);
   };
@@ -105,10 +109,10 @@ const Board = (props) => {
             >
               {square.currentPlayer ? (
                 <div className="playerPosition">
-                  <p>{pseudo}</p>
+                  <p>{player.pseudo}</p>
                   <img
                     className="playperPositionImg"
-                    src={player}
+                    src={myPlayer}
                     alt="player"
                   />
                 </div>
