@@ -11,6 +11,14 @@ const axios = require('axios');
 
 const avatarArray = [otherPlayer1, otherPlayer2, otherPlayer3];
 
+const instance = axios.create({
+  baseURL: 'http://wet-rabbit-57.loca.lt/',
+  headers: {
+    'Access-Control-Allow-Origin': '*',
+  },
+});
+// const config = { headers: { 'Access-Control-Allow-Origin': '*' } };
+
 const boardStyle = {
   width: '100%',
   height: '800px',
@@ -39,19 +47,19 @@ for (let i = 0; i < 168; i += 1) {
     otherPlayer: false,
   });
 }
-board[0].currentPlayer = true;
-board[39].otherPlayer = true;
+board[137].currentPlayer = true;
+board[17].otherPlayer = true;
 
 const Board = (props) => {
   const [myBoard, setmyBoard] = useState(board);
-  const [playerPosition, setPlayerPosition] = useState(0);
+  const [playerPosition, setPlayerPosition] = useState(137);
   const [isFiltered, setIsFiltered] = useState(true);
   const [isWrite, setIsWrite] = useState(true);
   const [isOnline, setIsOnline] = useState(true);
   const { player } = props;
 
   setInterval(() => {
-    axios.get('https://chilly-mayfly-63.loca.lt/users/').then((res) => {
+    instance.get('users/').then((res) => {
       console.log(res);
     });
   }, 5000);
@@ -79,8 +87,8 @@ const Board = (props) => {
       // eslint-disable-next-line no-param-reassign
       draftState[id].currentPlayer = true;
 
-      axios
-        .post(`https://chilly-mayfly-63.loca.lt/users/${player.pseudo}/edit`, {
+      instance
+        .post(`users/${player.pseudo}/edit`, {
           name: '',
         })
         .then((res) => {
