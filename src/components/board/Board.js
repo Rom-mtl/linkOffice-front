@@ -1,7 +1,9 @@
 /* eslint-disable no-nested-ternary */
 import React, { useState } from 'react';
 import produce from 'immer';
+import ActionBar from '../ActionBar/ActionBar';
 import './Board.css';
+
 import myPlayer from '../../images/bob.png';
 import otherPlayer1 from '../../images/otherplayer1.png';
 import otherPlayer2 from '../../images/otherplayer2.png';
@@ -190,6 +192,7 @@ const Board = (props) => {
           onClick={handlerOnLine}
         />
       </div>
+      <ActionBar />
     </div>
   );
 };
