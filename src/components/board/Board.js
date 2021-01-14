@@ -31,17 +31,30 @@ const squareBoard = {
 
 const board = [];
 for (let i = 0; i < 168; i += 1) {
-  board.push({ id: i, content: '', currentPlayer: false, otherPlayer: false });
+  board.push({
+    id: i,
+    name: '',
+    content: '',
+    currentPlayer: false,
+    otherPlayer: false,
+  });
 }
 board[0].currentPlayer = true;
 board[39].otherPlayer = true;
 
-const Board = () => {
+const Board = (props) => {
   const [myBoard, setmyBoard] = useState(board);
   const [playerPosition, setPlayerPosition] = useState(0);
   const [isFiltered, setIsFiltered] = useState(true);
   const [isWrite, setIsWrite] = useState(true);
   const [isOnline, setIsOnline] = useState(true);
+  const { pseudo } = props;
+
+  setInterval(() => {
+    axios.get('adresse-url').then((res) => {
+      console.log(res);
+    });
+  }, 5000);
 
   const handlerFilter = () => {
     setIsFiltered(!isFiltered);
@@ -66,9 +79,9 @@ const Board = () => {
       // eslint-disable-next-line no-param-reassign
       draftState[id].currentPlayer = true;
 
-      axios.get('adresse.url').then((res) => {
+      axios.post('adresse.url', { name: '' }).then((res) => {
         console.log(res);
-        // pour toutes les cases du board, si le numéro correspond à une numéro de joueur, placer le player
+        // poster le numéro de sa case
       });
     });
     setmyBoard(nextState);
@@ -92,6 +105,7 @@ const Board = () => {
             >
               {square.currentPlayer ? (
                 <div className="playerPosition">
+                  <p>{pseudo}</p>
                   <img
                     className="playperPositionImg"
                     src={player}
