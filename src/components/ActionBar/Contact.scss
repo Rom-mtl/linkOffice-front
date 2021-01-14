@@ -1,0 +1,27 @@
+.contacts {
+  margin-left: 10px;
+  width: 20%;
+  padding: 20px;
+  background-color: rgba(lightgray, 80%);
+
+  .contacts-list {
+    .contact {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      .contact-picker {
+        font-size: 30px;
+        margin-right: 10px;
+      }
+      .contact-status {
+        margin-right: 20px;
+        width: 29px;
+        height: 29px;
+        border-radius: 50%;
+        background-color: green;
+      }
+      .contact-name {
+      }
+    }
+  }
+}

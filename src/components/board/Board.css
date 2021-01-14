@@ -1,16 +1,16 @@
 .wrapper {
-  margin-left: 7%;
   background-image: url('../../images/parquet3.jpg');
   background-size: 10%;
   background-repeat: repeat;
   display: grid;
   height: 800px;
-  width: 800px;
+  width: 100%;
   grid-template-columns: repeat(12, 1fr);
   grid-auto-rows: auto;
   background-color: lightblue;
   grid-template-rows: repeat(14, 1fr);
-  border: solid 11px black;
+  border: solid 11px rgba(128, 128, 128, 0.63);
+  margin-bottom: 10px;
 }
 .one {
   grid-column: 1 / 3;
