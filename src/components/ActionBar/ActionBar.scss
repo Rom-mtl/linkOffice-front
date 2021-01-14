@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri&family=Noto+Sans+JP&display=swap%27');
 
 .actionBar {
+  position: absolute;
+  top: 99%;
   background-image: url('../../images/work.jpg');
   background-size: cover;
   background-repeat: no-repeat;

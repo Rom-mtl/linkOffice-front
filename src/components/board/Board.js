@@ -1,38 +1,70 @@
+/* eslint-disable no-nested-ternary */
 import React, { useState } from 'react';
 import produce from 'immer';
 import ActionBar from '../ActionBar/ActionBar';
 import './Board.css';
 
+import myPlayer from '../../images/bob.png';
+import otherPlayer1 from '../../images/otherplayer1.png';
+import otherPlayer2 from '../../images/otherplayer2.png';
+import otherPlayer3 from '../../images/otherplayer3.png';
+
+const axios = require('axios');
+
+const avatarArray = [otherPlayer1, otherPlayer2, otherPlayer3];
+
+const instance = axios.create({
+  baseURL: 'http://wet-rabbit-57.loca.lt/',
+  headers: {
+    'Access-Control-Allow-Origin': '*',
+  },
+});
+// const config = { headers: { 'Access-Control-Allow-Origin': '*' } };
+
 const boardStyle = {
   width: '100%',
   height: '800px',
   display: 'grid',
-  gridTemplateColumns: 'repeat(12, 1fr)',
-  gridAutoRows: 'auto',
-  gridTemplateRows: 'repeat(14, 1fr)',
+  gridTemplateColumns: 'repeat(12, 112px)',
+  gridAutoRows: '200px',
+  gridTemplateRows: 'repeat(14, 57px)',
   marginBottom: '10px',
-  marginTop: '11px',
-  marginLeft: '11px',
   position: 'absolute',
   zIndex: '2',
 };
 
 const squareBoard = {
   border: 'none',
+  display: 'flex',
+  justifyContent: 'center',
 };
 
 const board = [];
 for (let i = 0; i < 168; i += 1) {
-  board.push({ id: i, content: '', currentPlayer: false });
+  board.push({
+    id: i,
+    name: '',
+    content: '',
+    currentPlayer: false,
+    otherPlayer: false,
+  });
 }
-board[0].currentPlayer = true;
+board[137].currentPlayer = true;
+board[17].otherPlayer = true;
 
-const Board = () => {
+const Board = (props) => {
   const [myBoard, setmyBoard] = useState(board);
-  const [playerPosition, setPlayerPosition] = useState(0);
+  const [playerPosition, setPlayerPosition] = useState(137);
   const [isFiltered, setIsFiltered] = useState(true);
   const [isWrite, setIsWrite] = useState(true);
   const [isOnline, setIsOnline] = useState(true);
+  const { player } = props;
+
+  setInterval(() => {
+    instance.get('users/').then((res) => {
+      console.log(res);
+    });
+  }, 5000);
 
   const handlerFilter = () => {
     setIsFiltered(!isFiltered);
@@ -56,6 +88,15 @@ const Board = () => {
       setPlayerPosition(id);
       // eslint-disable-next-line no-param-reassign
       draftState[id].currentPlayer = true;
+
+      instance
+        .post(`users/${player.pseudo}/edit`, {
+          name: '',
+        })
+        .then((res) => {
+          console.log(res);
+          // poster le numéro de sa case
+        });
     });
     setmyBoard(nextState);
   };
@@ -77,7 +118,22 @@ const Board = () => {
               }}
             >
               {square.currentPlayer ? (
-                <div className="playerPosition" />
+                <div className="playerPosition">
+                  <p>{player.pseudo}</p>
+                  <img
+                    className="playperPositionImg"
+                    src={myPlayer}
+                    alt="player"
+                  />
+                </div>
+              ) : square.otherPlayer ? (
+                <div className="playerPosition">
+                  <img
+                    className="playperPositionImg"
+                    src={avatarArray[1]}
+                    alt="player"
+                  />
+                </div>
               ) : (
                 <div />
               )}
@@ -99,7 +155,10 @@ const Board = () => {
         <div className="eleven" />
         <div className="douze" />
         <div className="treize" />
-        <button
+        <div
+          onKeyPress={() => {}}
+          role="button"
+          tabIndex="0"
           label="text"
           className={!isWrite ? 'conf' : 'conf2'}
           type="button"
@@ -114,13 +173,19 @@ const Board = () => {
         <div className="murRight" />
         <div className="cafePointer" />
         <div className="gamePointer" />
-        <button
+        <div
+          onKeyPress={() => {}}
+          role="button"
+          tabIndex="0"
           label="text"
           className={!isFiltered ? 'planteDeux' : 'planteFane'}
           type="button"
           onClick={handlerFilter}
         />
-        <button
+        <div
+          onKeyPress={() => {}}
+          role="button"
+          tabIndex="0"
           label="text"
           className={!isOnline ? 'thomas' : 'Thomas2'}
           type="button"

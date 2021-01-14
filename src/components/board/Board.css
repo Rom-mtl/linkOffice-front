@@ -1,3 +1,6 @@
+*:focus {
+  outline: none;
+}
 .board-body {
   position: relative;
   width: 100%;
@@ -5,26 +8,32 @@
 }
 
 .playerPosition {
-  background-image: url('../../images/bob.png');
+  /* background-image: url('../../images/bob.png');
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: center; */
   width: 100%;
   height: 100%;
+  display: flex;
+  justify-content: center;
+}
+.playperPositionImg {
+  width: auto;
+  height: 125px;
+  overflow: visible;
 }
 
 .wrapper {
   background-image: url('../../images/parquet3.jpg');
   background-size: 10%;
-  margin-left: 10%;
   background-repeat: repeat;
   display: grid;
   height: 800px;
-  width: 100%;
-  grid-template-columns: repeat(12, 1fr);
+  width: 1345px;
+  grid-template-columns: repeat(12, 112px);
   grid-auto-rows: auto;
   background-color: lightblue;
-  grid-template-rows: repeat(14, 1fr);
+  grid-template-rows: repeat(14, 57px);
   margin-bottom: 10px;
   position: absolute;
 }
@@ -34,46 +43,52 @@
   background-image: url('../../images/murMeuble1.png');
   background-size: contain;
   background-repeat: no-repeat;
-  z-index: 2;
+  z-index: 3;
+  cursor: pointer;
 }
 .two {
-  grid-column: 3 / 5;
+  grid-column: 3 / 4;
   grid-row: 6 / 9;
   background-image: url('../../images/bureau.png');
   background-size: contain;
   background-repeat: no-repeat;
+  z-index: 3;
   cursor: pointer;
 }
 .three {
-  grid-column: 7 / 9;
+  grid-column: 7 / 8;
   grid-row: 6 / 9;
   background-image: url('../../images/bureau.png');
   background-size: contain;
   background-repeat: no-repeat;
+  z-index: 3;
   cursor: pointer;
 }
 .four {
-  grid-column: 5 / 7;
+  grid-column: 5 / 6;
   grid-row: 6 / 9;
   background-image: url('../../images/bureau.png');
   background-size: contain;
   background-repeat: no-repeat;
+  z-index: 3;
   cursor: pointer;
 }
 .five {
-  grid-column: 7 / 9;
+  grid-column: 7 / 8;
   grid-row: 10 / 13;
   background-image: url('../../images/bureau.png');
   background-size: contain;
   background-repeat: no-repeat;
+  z-index: 3;
   cursor: pointer;
 }
 .six {
-  grid-column: 4 / 7;
+  grid-column: 4 / 5;
   grid-row: 10 / 13;
   background-image: url('../../images/bureau.png');
   background-size: contain;
   background-repeat: no-repeat;
+  z-index: 3;
   cursor: pointer;
 }
 .seven {
@@ -83,7 +98,8 @@
   background-size: contain;
   background-repeat: no-repeat;
 
-  z-index: 2;
+  z-index: 3;
+  cursor: pointer;
 }
 .height {
   grid-column: 1 / 1;
@@ -91,7 +107,8 @@
   background-image: url('../../images/plante3.png');
   background-size: contain;
   background-repeat: no-repeat;
-  z-index: 2;
+  z-index: 3;
+  cursor: pointer;
 }
 .nine {
   grid-column: 1 / 6;
@@ -99,14 +116,16 @@
   background-image: url('../../images/brique2.png');
   background-size: contain;
   background-repeat: repeat;
+  z-index: 3;
   cursor: pointer;
 }
 .ten {
-  grid-column: 2 /4;
+  grid-column: 2 / 3;
   grid-row: 2 / 4;
   background-image: url('../../images/bureauChef.png');
   background-size: contain;
   background-repeat: no-repeat;
+  z-index: 3;
   cursor: pointer;
 }
 .thomas {
@@ -115,7 +134,8 @@
   background-image: url('../../images/thomas.png');
   background-size: contain;
   background-repeat: no-repeat;
-  border: none;
+  z-index: 3;
+  cursor: pointer;
 }
 .Thomas2 {
   grid-column: 2 / 3;
@@ -123,7 +143,8 @@
   background-image: url('../../images/Thomas2.png');
   background-size: contain;
   background-repeat: no-repeat;
-  border: none;
+  z-index: 3;
+  cursor: pointer;
 }
 
 .Thomas2:focus {
@@ -139,6 +160,7 @@
   background-image: url('../../images/brique2.png');
   background-size: contain;
   background-repeat: repeat;
+  z-index: 3;
   cursor: pointer;
 }
 .douze {
@@ -147,6 +169,7 @@
   background-image: url('../../images/cartons.png');
   background-size: contain;
   background-repeat: no-repeat;
+  z-index: 3;
   cursor: pointer;
 }
 .gamePointer {
@@ -155,6 +178,7 @@
   background-image: url('../../images/gamePointer.png');
   background-size: contain;
   background-repeat: no-repeat;
+  z-index: 3;
   cursor: pointer;
 }
 
@@ -165,6 +189,8 @@
   background-size: contain;
   background-repeat: no-repeat;
   border: none;
+  z-index: 3;
+  cursor: pointer;
 }
 .conf2 {
   grid-column: 9/ 12;
@@ -173,6 +199,8 @@
   background-size: contain;
   background-repeat: no-repeat;
   border: none;
+  z-index: 3;
+  cursor: pointer;
 }
 
 .conf:focus {
@@ -187,14 +215,16 @@
   background-image: url('../../images/canap2.png');
   background-size: contain;
   background-repeat: no-repeat;
+  z-index: 3;
   cursor: pointer;
 }
 .cafe {
-  grid-column: 10 / 13;
+  grid-column: 10 / 11;
   grid-row: 8 / 10;
   background-image: url('../../images/cafe.png');
   background-size: contain;
   background-repeat: no-repeat;
+  z-index: 3;
   cursor: pointer;
 }
 
@@ -204,6 +234,8 @@
   background-image: url('../../images/plants2.gif');
   background-size: contain;
   background-repeat: no-repeat;
+  z-index: 3;
+  cursor: pointer;
 }
 
 .cafePointer {
@@ -213,6 +245,8 @@
   background-image: url('../../images/cafePointer.png');
   background-size: contain;
   background-repeat: no-repeat;
+  z-index: 3;
+  cursor: pointer;
 }
 .tapis {
   grid-column: 6 / 8;
@@ -229,6 +263,8 @@
   background-size: contain;
   background-repeat: no-repeat;
   border: none;
+  z-index: 3;
+  cursor: pointer;
 }
 .planteDeux:focus {
   outline: none;
@@ -240,6 +276,8 @@
   background-size: contain;
   background-repeat: no-repeat;
   border: none;
+  z-index: 3;
+  cursor: pointer;
 }
 
 .planteFane:focus {
@@ -253,6 +291,8 @@
   background-size: contain;
   background-repeat: no-repeat;
   border: none;
+  z-index: 3;
+  cursor: pointer;
 }
 
 .planteFane1:focus {
