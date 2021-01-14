@@ -10,7 +10,7 @@ import Board from './board/Board';
 // import Header from './Header/Header';
 
 function App() {
-  const [pseudo, setPseudo] = useState('');
+  const [player, setPlayer] = useState({ pseudo: '', position: '' });
 
   return (
     <Router>
@@ -18,12 +18,12 @@ function App() {
         <Route
           exact
           path="/"
-          render={() => <Home pseudo={pseudo} setPseudo={setPseudo} />}
+          render={() => <Home player={player} setPlayer={setPlayer} />}
         />
         <Route
           exact
           path="/board"
-          render={() => <Board pseudo={pseudo} setPseudo={setPseudo} />}
+          render={() => <Board player={player} setPlayer={setPlayer} />}
         />
         {/* <div className="App">
       <div className="body">
