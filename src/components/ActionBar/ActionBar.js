@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-// import Application from './Application';
-// import Mood from './Mood';
 import './ActionBar.scss';
 import { FcPlus } from 'react-icons/fc';
 import Picker from 'emoji-picker-react';
@@ -10,7 +8,6 @@ import spotify from '../../images/spotify.png';
 import steam from '../../images/steam.png';
 import meet from '../../images/meet.png';
 import more from '../../images/more.png';
-// import Contact from './Contact';
 
 const ActionBar = () => {
   const [chosenEmoji, setChosenEmoji] = useState(null);
@@ -116,11 +113,16 @@ const ActionBar = () => {
             </span>
           )}
         </div>
-        <Picker className="boiteEmoji" onEmojiClick={onEmojiClick} />
-        <textarea
-          className="message"
-          placeholder="Entrez votre message ici..."
-        />
+        <Picker onEmojiClick={onEmojiClick} />
+        <div className="containerArea">
+          <textarea
+            className="message"
+            placeholder="Entrez votre message ici..."
+          />
+          <button type="button" className="buttonSend">
+            Envoyer
+          </button>
+        </div>
       </div>
       <div className="collegue">
         <div className="contacts-list">
@@ -142,10 +144,6 @@ const ActionBar = () => {
           </div>
         </div>
       </div>
-
-      {/* <Mood />
-      <Application />
-      <Contact /> */}
     </div>
   );
 };
