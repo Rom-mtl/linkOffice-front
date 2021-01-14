@@ -7,6 +7,7 @@ import ActionBar from '../ActionBar/ActionBar';
 import './Board.css';
 
 import myPlayer from '../../images/bob.png';
+import myPlayer2 from '../../images/bob1hand.png';
 import otherPlayer1 from '../../images/otherplayer1.png';
 import otherPlayer2 from '../../images/otherplayer2.png';
 import otherPlayer3 from '../../images/otherplayer3.png';
@@ -92,6 +93,7 @@ const Board = (props) => {
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = useState(getModalStyle);
   const [open, setOpen] = useState(false);
+  const [isQuestion, setQuestion] = useState(false);
 
   // setInterval(() => {
   //   instance.get('users/').then((res) => {
@@ -109,6 +111,14 @@ const Board = (props) => {
 
   const handlerOnLine = () => {
     setIsOnline(!isOnline);
+  };
+
+  const haveQuestion = () => {
+    setQuestion(true);
+  };
+
+  const closeQuestion = () => {
+    setQuestion(false);
   };
 
   const changeSquareContent = (id) => {
@@ -178,7 +188,7 @@ const Board = (props) => {
                   <p>{player.pseudo}</p>
                   <img
                     className="playperPositionImg"
-                    src={myPlayer}
+                    src={isQuestion ? myPlayer2 : myPlayer}
                     alt="player"
                   />
                 </div>
@@ -237,7 +247,7 @@ const Board = (props) => {
         <div className="seven" />
         <div className="height" />
         <div className="nine" />
-        <div className="ten" />
+        <div className="tapis" />
         <div className="eleven" />
         <div className="douze" />
         <div className="treize" />
@@ -252,7 +262,15 @@ const Board = (props) => {
         />
         <div className="cafe" />
         <div className="canap" />
-        <div className="tapis" />
+        <div
+          onKeyPress={() => {}}
+          role="button"
+          tabIndex="0"
+          label="text"
+          className="ten"
+          type="button"
+          onClick={isQuestion ? closeQuestion : haveQuestion}
+        />
         <div className="murTop" />
         <div className="murBottom" />
         <div className="murLeft" />
