@@ -96,7 +96,7 @@ const Board = (props) => {
 
   useEffect(() => {
     setInterval(() => {
-      axios.get('https://grumpy-mule-40.loca.lt/users/').then((res) => {
+      axios.get('https://neat-badger-78.loca.lt/users/').then((res) => {
         setOnlinePlayers(res.data);
       });
     }, 1000);
@@ -118,7 +118,7 @@ const Board = (props) => {
 
   useEffect(() => {
     axios
-      .put(`https://grumpy-mule-40.loca.lt/users/${player.pseudo}/edit`, {
+      .put(`https://neat-badger-78.loca.lt/users/${player.pseudo}/edit`, {
         position: { playerPosition },
       })
       .then((res) => {
@@ -221,7 +221,7 @@ const Board = (props) => {
               {square.currentPlayer ? (
                 <div className="playerPosition">
                   {interractOtherPlayer ? (
-                    <p className="bulle"> Yo Romain</p>
+                    <p className="bulle"> Yo Elsa</p>
                   ) : (
                     <p className="pseudo">{player.pseudo}</p>
                   )}
@@ -234,11 +234,11 @@ const Board = (props) => {
                 </div>
               ) : square.otherPlayer ? (
                 <div className="playerPosition">
-                  <p className="pseudo">Romain</p>
+                  <p className="pseudo">Elsa</p>
 
                   <img
                     className="playperPositionImg"
-                    src={avatarArray[1]}
+                    src={avatarArray[0]}
                     alt="player"
                   />
                 </div>
