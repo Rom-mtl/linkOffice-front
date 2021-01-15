@@ -1,8 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri&family=Noto+Sans+JP&display=swap%27');
+
 *:focus {
   outline: none;
 }
 .board-body {
+  background-image: url('../../images/work.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: fixed;
   position: relative;
+  display: flex;
+  justify-content: center;
   width: 100%;
   height: 800px;
 }
@@ -26,8 +34,17 @@
   overflow: visible;
 }
 .pseudo {
-  background-color: white;
+  background-color: rgba(255, 252, 252, 0.37);
+  border-radius: 20px;
   padding: 10px;
+  font-family: 'Hind Siliguri', sans-serif;
+  font-size: bold;
+  border: none;
+}
+
+.bulle {
+  background-color: rgba(41, 35, 35, 0.37);
+  color: white;
 }
 
 .wrapper {
