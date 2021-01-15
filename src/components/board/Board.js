@@ -96,7 +96,7 @@ const Board = (props) => {
 
   useEffect(() => {
     setInterval(() => {
-      axios.get('https://witty-walrus-16.loca.lt/users/').then((res) => {
+      axios.get('https://grumpy-mule-40.loca.lt/users/').then((res) => {
         setOnlinePlayers(res.data);
       });
     }, 1000);
@@ -118,7 +118,7 @@ const Board = (props) => {
 
   useEffect(() => {
     axios
-      .put(`https://witty-walrus-16.loca.lt/users/${player.pseudo}/edit`, {
+      .put(`https://grumpy-mule-40.loca.lt/users/${player.pseudo}/edit`, {
         position: { playerPosition },
       })
       .then((res) => {
