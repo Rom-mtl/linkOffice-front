@@ -9,7 +9,9 @@ import steam from '../../images/steam.png';
 import meet from '../../images/meet.png';
 import more from '../../images/more.png';
 
-const ActionBar = () => {
+const ActionBar = (props) => {
+  const { player, onlinePlayers } = props;
+
   const [chosenEmoji, setChosenEmoji] = useState(null);
 
   const onEmojiClick = (event, emojiObject) => {
@@ -23,7 +25,7 @@ const ActionBar = () => {
         <div className="hello">
           <p className="auBoulot">
             Au boulot, <br />
-            <span className="idName">Amandine</span>
+            <span className="idName">{player.pseudo}</span>
           </p>
         </div>
         <div className="connexion-status">
@@ -96,26 +98,16 @@ const ActionBar = () => {
         <div className="logo2" />
         <div className="smiley">
           {chosenEmoji ? (
-            <span className="spanEmoji">
-              YOU
-              <br />
-              <br /> ARE
-              <br />
-              <br />
-              {chosenEmoji.emoji}
-            </span>
+            <div className="spanEmoji">YOU ARE {chosenEmoji.emoji}</div>
           ) : (
-            <span className="spanEmoji">
-              HOW
-              <br />
-              <br /> ARE
-              <br />
-              <br />
-              YOU?
-            </span>
+            <div className="spanEmoji">HOW ARE YOU?</div>
           )}
         </div>
-        <Picker onEmojiClick={onEmojiClick} />
+        <Picker
+          onEmojiClick={onEmojiClick}
+          disableSkinTonePicker
+          disableSearchBar
+        />
         <div className="containerArea">
           <textarea
             className="message"
@@ -129,21 +121,16 @@ const ActionBar = () => {
       <div className="collegue">
         <div className="contacts-list">
           <h2 className="titleCollegue">Collègues</h2>
-          <div className="contact">
-            <FcPlus className="contact-picker" />
-            <div className="contact-status" />
-            <div className="contact-name">Cynthia </div>
-          </div>
-          <div className="contact">
-            <FcPlus className="contact-picker" />
-            <div className="contact-status" />
-            <div className="contact-name">Bob </div>
-          </div>
-          <div className="contact">
-            <FcPlus className="contact-picker" />
-            <div className="contact-status" />
-            <div className="contact-name">Afida </div>
-          </div>
+
+          {onlinePlayers.map((coworker) => {
+            return (
+              <div className="contact">
+                <FcPlus className="contact-picker" />
+                <div className="contact-status" />
+                <div className="contact-name">{coworker.pseudo} </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

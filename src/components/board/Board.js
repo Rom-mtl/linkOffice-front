@@ -1,5 +1,8 @@
 /* eslint-disable no-nested-ternary */
-import React, { useState } from 'react';
+
+import React, { useEffect, useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Modal from '@material-ui/core/Modal';
 import produce from 'immer';
 import ActionBar from '../ActionBar/ActionBar';
 import './Board.css';
@@ -12,14 +15,6 @@ import otherPlayer3 from '../../images/otherplayer3.png';
 const axios = require('axios');
 
 const avatarArray = [otherPlayer1, otherPlayer2, otherPlayer3];
-
-const instance = axios.create({
-  baseURL: 'http://wet-rabbit-57.loca.lt/',
-  headers: {
-    'Access-Control-Allow-Origin': '*',
-  },
-});
-// const config = { headers: { 'Access-Control-Allow-Origin': '*' } };
 
 const boardStyle = {
   width: '100%',
@@ -50,7 +45,33 @@ for (let i = 0; i < 168; i += 1) {
   });
 }
 board[137].currentPlayer = true;
-board[17].otherPlayer = true;
+
+// INSTALLATION DE LA MODALE MATERIAL UI
+function rand() {
+  return Math.round(Math.random() * 20) - 10;
+}
+
+function getModalStyle() {
+  const top = 50 + rand();
+  const left = 50 + rand();
+
+  return {
+    top: `${top}%`,
+    left: `${left}%`,
+    transform: `translate(-${top}%, -${left}%)`,
+  };
+}
+
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    position: 'absolute',
+    width: 300,
+    backgroundColor: 'lightYellow',
+    border: '3px solid white',
+    boxShadow: theme.shadows[1],
+    padding: theme.spacing(2, 4, 3),
+  },
+}));
 
 const Board = (props) => {
   const [myBoard, setmyBoard] = useState(board);
@@ -58,13 +79,47 @@ const Board = (props) => {
   const [isFiltered, setIsFiltered] = useState(true);
   const [isWrite, setIsWrite] = useState(true);
   const [isOnline, setIsOnline] = useState(true);
+  const [onlinePlayers, setOnlinePlayers] = useState([]);
   const { player } = props;
+  const classes = useStyles();
+  // getModalStyle is not a pure function, we roll the style only on the first render
+  const [modalStyle] = useState(getModalStyle);
+  const [open, setOpen] = useState(false);
 
-  setInterval(() => {
-    instance.get('users/').then((res) => {
-      console.log(res);
+  // setInterval(() => {
+  // }, 5000);
+
+  useEffect(() => {
+    setInterval(() => {
+      axios.get('http://wonderful-goat-74.loca.lt/users/').then((res) => {
+        setOnlinePlayers(res.data);
+      });
+    }, 1000);
+  }, []);
+
+  useEffect(() => {
+    const boardUpdated = myBoard.map((square) => {
+      for (let i = 0; i < onlinePlayers.length; i += 1) {
+        if (
+          parseInt(onlinePlayers[i].position, 10) === parseInt(square.id, 10)
+        ) {
+          return { ...square, otherPlayer: true };
+        }
+      }
+      return { ...square, otherPlayer: false };
     });
-  }, 5000);
+    setmyBoard(boardUpdated);
+  }, [playerPosition, onlinePlayers]);
+
+  useEffect(() => {
+    axios
+      .put(`http://wonderful-goat-74.loca.lt/users/${player.pseudo}/edit`, {
+        position: { playerPosition },
+      })
+      .then((res) => {
+        setOnlinePlayers(res);
+      });
+  }, [playerPosition]);
 
   const handlerFilter = () => {
     setIsFiltered(!isFiltered);
@@ -88,18 +143,32 @@ const Board = (props) => {
       setPlayerPosition(id);
       // eslint-disable-next-line no-param-reassign
       draftState[id].currentPlayer = true;
-
-      instance
-        .post(`users/${player.pseudo}/edit`, {
-          name: '',
-        })
-        .then((res) => {
-          console.log(res);
-          // poster le numéro de sa case
-        });
     });
     setmyBoard(nextState);
   };
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    console.log(open);
+  };
+
+  const body = (
+    <div style={modalStyle} className={classes.paper}>
+      <h2 id="simple-modal-title">Poste de Travail</h2>
+      <p id="simple-modal-description">
+        Vous saisissez un post-it et y ecrivez :
+      </p>
+      <textarea />
+      <button type="submit">Ecrire</button>
+      <button type="button" onClick={handleClose}>
+        X
+      </button>
+    </div>
+  );
 
   return (
     <div className="board-body">
@@ -119,7 +188,7 @@ const Board = (props) => {
             >
               {square.currentPlayer ? (
                 <div className="playerPosition">
-                  <p>{player.pseudo}</p>
+                  <p className="pseudo">{player.pseudo}</p>
                   <img
                     className="playperPositionImg"
                     src={myPlayer}
@@ -128,6 +197,7 @@ const Board = (props) => {
                 </div>
               ) : square.otherPlayer ? (
                 <div className="playerPosition">
+                  <p className="pseudo">{player.pseudo}</p>
                   <img
                     className="playperPositionImg"
                     src={avatarArray[1]}
@@ -145,8 +215,38 @@ const Board = (props) => {
         <div className="one" />
         <div className="two" />
         <div className="three" />
-        <div className="four" />
+        <div
+          type="button"
+          className="four"
+          onKeyPress={() => {}}
+          role="button"
+          tabIndex="0"
+          label="text"
+          onClick={handleOpen}
+        >
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="simple-modal-title"
+            aria-describedby="simple-modal-description"
+          >
+            {body}
+          </Modal>
+        </div>
         <div className="five" />
+        <div style={{ zIndex: '4000', display: 'none' }}>
+          <button type="button" onClick={handleOpen}>
+            Open Modal
+          </button>
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="simple-modal-title"
+            aria-describedby="simple-modal-description"
+          >
+            {body}
+          </Modal>
+        </div>
         <div className="six" />
         <div className="seven" />
         <div className="height" />
@@ -192,7 +292,7 @@ const Board = (props) => {
           onClick={handlerOnLine}
         />
       </div>
-      <ActionBar />
+      <ActionBar player={player} onlinePlayers={onlinePlayers} />
     </div>
   );
 };
