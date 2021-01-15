@@ -188,7 +188,7 @@ const Board = (props) => {
             >
               {square.currentPlayer ? (
                 <div className="playerPosition">
-                  <p>{player.pseudo}</p>
+                  <p className="pseudo">{player.pseudo}</p>
                   <img
                     className="playperPositionImg"
                     src={myPlayer}
@@ -197,6 +197,7 @@ const Board = (props) => {
                 </div>
               ) : square.otherPlayer ? (
                 <div className="playerPosition">
+                  <p className="pseudo">{player.pseudo}</p>
                   <img
                     className="playperPositionImg"
                     src={avatarArray[1]}
@@ -291,7 +292,7 @@ const Board = (props) => {
           onClick={handlerOnLine}
         />
       </div>
-      <ActionBar />
+      <ActionBar player={player} onlinePlayers={onlinePlayers} />
     </div>
   );
 };
