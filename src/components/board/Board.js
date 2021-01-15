@@ -45,7 +45,6 @@ for (let i = 0; i < 168; i += 1) {
   });
 }
 board[137].currentPlayer = true;
-board[17].otherPlayer = true;
 
 // INSTALLATION DE LA MODALE MATERIAL UI
 function rand() {
@@ -101,9 +100,6 @@ const Board = (props) => {
   useEffect(() => {
     const boardUpdated = myBoard.map((square) => {
       for (let i = 0; i < onlinePlayers.length; i += 1) {
-        console.log(onlinePlayers[i].position);
-        console.log(square.id);
-
         if (
           parseInt(onlinePlayers[i].position, 10) === parseInt(square.id, 10)
         ) {
@@ -138,14 +134,12 @@ const Board = (props) => {
       // eslint-disable-next-line no-param-reassign
       draftState[id].currentPlayer = true;
 
-      // instance
-      //   .post(`users/${player.pseudo}/edit`, {
-      //     name: '',
-      //   })
-      //   .then((res) => {
-      //     console.log(res);
-      //     // poster le numéro de sa case
-      //   });
+      axios.put(
+        `http://wonderful-goat-74.loca.lt/users/${player.pseudo}/edit`,
+        {
+          position: { playerPosition },
+        }
+      );
     });
     setmyBoard(nextState);
   };
