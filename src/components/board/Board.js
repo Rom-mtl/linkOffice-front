@@ -5,7 +5,7 @@ import Modal from '@material-ui/core/Modal';
 import produce from 'immer';
 import ActionBar from '../ActionBar/ActionBar';
 import './Board.css';
-
+import myPlayer3 from '../../images/bobCaf.gif';
 import myPlayer from '../../images/bob.png';
 import myPlayer2 from '../../images/bob1hand.png';
 import otherPlayer1 from '../../images/otherplayer1.png';
@@ -94,6 +94,7 @@ const Board = (props) => {
   const [modalStyle] = useState(getModalStyle);
   const [open, setOpen] = useState(false);
   const [isQuestion, setQuestion] = useState(false);
+  const [isCoffee, setIsCoffee] = useState(false);
 
   // setInterval(() => {
   //   instance.get('users/').then((res) => {
@@ -119,6 +120,14 @@ const Board = (props) => {
 
   const closeQuestion = () => {
     setQuestion(false);
+  };
+
+  const takeCoff = () => {
+    setIsCoffee(true);
+  };
+
+  const stopCoff = () => {
+    setIsCoffee(false);
   };
 
   const changeSquareContent = (id) => {
@@ -167,6 +176,12 @@ const Board = (props) => {
     </div>
   );
 
+  function animatedPlayer() {
+    if (isQuestion) return myPlayer2;
+    if (isCoffee) return myPlayer3;
+    return myPlayer;
+  }
+
   return (
     <div className="board-body">
       <div style={boardStyle} className="board">
@@ -188,7 +203,7 @@ const Board = (props) => {
                   <p>{player.pseudo}</p>
                   <img
                     className="playperPositionImg"
-                    src={isQuestion ? myPlayer2 : myPlayer}
+                    src={animatedPlayer()}
                     alt="player"
                   />
                 </div>
@@ -260,7 +275,16 @@ const Board = (props) => {
           type="button"
           onClick={handlerWrite}
         />
-        <div className="cafe" />
+
+        <div
+          onKeyPress={() => {}}
+          role="button"
+          tabIndex="0"
+          label="text"
+          className="cafe"
+          type="button"
+          onClick={isCoffee ? stopCoff : takeCoff}
+        />
         <div className="canap" />
         <div
           onKeyPress={() => {}}
