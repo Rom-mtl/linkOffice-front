@@ -118,11 +118,11 @@ const Board = (props) => {
 
   useEffect(() => {
     axios
-      .put(`https://witty-walrus-16.loca.lt/${player.pseudo}/edit`, {
+      .put(`https://witty-walrus-16.loca.lt/users/${player.pseudo}/edit`, {
         position: { playerPosition },
       })
       .then((res) => {
-        setOnlinePlayers(res);
+        setOnlinePlayers(res.data);
       });
   }, [playerPosition]);
 
