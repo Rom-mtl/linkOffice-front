@@ -44,52 +44,22 @@ const ActionBar = (props) => {
       <div className="humeur">
         <h2 className="appTitle">Vos applications</h2>
         <div className="applications-grid">
-          <button
-            type="button"
-            onClick={() => {
-              console.log('coucou');
-            }}
-          >
+          <button type="button" onClick={() => {}}>
             <img className="games" src={games} alt="discord" />
           </button>
-          <button
-            type="button"
-            onClick={() => {
-              console.log('coucou');
-            }}
-          >
+          <button type="button" onClick={() => {}}>
             <img className="spotify" src={spotify} alt="discord" />
           </button>
-          <button
-            type="button"
-            onClick={() => {
-              console.log('coucou');
-            }}
-          >
+          <button type="button" onClick={() => {}}>
             <img className="steam" src={steam} alt="discord" />
           </button>
-          <button
-            type="button"
-            onClick={() => {
-              console.log('coucou');
-            }}
-          >
+          <button type="button" onClick={() => {}}>
             <img className="meet" src={meet} alt="discord" />
           </button>
-          <button
-            type="button"
-            onClick={() => {
-              console.log('coucou');
-            }}
-          >
+          <button type="button" onClick={() => {}}>
             <img className="discord" src={discord} alt="discord" />
           </button>
-          <button
-            type="button"
-            onClick={() => {
-              console.log('coucou');
-            }}
-          >
+          <button type="button" onClick={() => {}}>
             <img className="more" src={more} alt="discord" />
           </button>
         </div>
