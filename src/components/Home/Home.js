@@ -12,7 +12,7 @@ const Home = (props) => {
 
   const addPlayer = () => {
     axios
-      .post(`https://wonderful-goat-74.loca.lt/users/add/${player.pseudo}`)
+      .post(`https://witty-walrus-16.loca.lt/users/add/${player.pseudo}`)
       .then((res) => {
         console.log(res);
       });

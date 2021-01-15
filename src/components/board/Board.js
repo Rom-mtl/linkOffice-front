@@ -1,3 +1,4 @@
+/* eslint-disable dot-notation */
 /* eslint-disable no-nested-ternary */
 
 import React, { useEffect, useState } from 'react';
@@ -85,13 +86,14 @@ const Board = (props) => {
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = useState(getModalStyle);
   const [open, setOpen] = useState(false);
+  const [interractOtherPlayer, setInterractOtherPlayer] = useState(false);
 
   // setInterval(() => {
   // }, 5000);
 
   useEffect(() => {
     setInterval(() => {
-      axios.get('http://wonderful-goat-74.loca.lt/users/').then((res) => {
+      axios.get('https://witty-walrus-16.loca.lt/users/').then((res) => {
         setOnlinePlayers(res.data);
       });
     }, 1000);
@@ -113,7 +115,7 @@ const Board = (props) => {
 
   useEffect(() => {
     axios
-      .put(`http://wonderful-goat-74.loca.lt/users/${player.pseudo}/edit`, {
+      .put(`https://witty-walrus-16.loca.lt/${player.pseudo}/edit`, {
         position: { playerPosition },
       })
       .then((res) => {
@@ -134,17 +136,22 @@ const Board = (props) => {
   };
 
   const changeSquareContent = (id) => {
-    const nextState = produce(myBoard, (draftState) => {
-      // mettre à jour current player de l'ancienne case à false
-      // mettre à jour le state du player position
-      // mettre à jour current player de l'id en cours
-      // eslint-disable-next-line no-param-reassign
-      draftState[playerPosition].currentPlayer = false;
-      setPlayerPosition(id);
-      // eslint-disable-next-line no-param-reassign
-      draftState[id].currentPlayer = true;
-    });
-    setmyBoard(nextState);
+    if (myBoard[id].otherPlayer === true) {
+      setInterractOtherPlayer(true);
+    } else {
+      setInterractOtherPlayer(false);
+      const nextState = produce(myBoard, (draftState) => {
+        // mettre à jour current player de l'ancienne case à false
+        // mettre à jour le state du player position
+        // mettre à jour current player de l'id en cours
+        // eslint-disable-next-line no-param-reassign
+        draftState[playerPosition].currentPlayer = false;
+        setPlayerPosition(id);
+        // eslint-disable-next-line no-param-reassign
+        draftState[id].currentPlayer = true;
+      });
+      setmyBoard(nextState);
+    }
   };
 
   const handleOpen = () => {
@@ -188,7 +195,12 @@ const Board = (props) => {
             >
               {square.currentPlayer ? (
                 <div className="playerPosition">
-                  <p className="pseudo">{player.pseudo}</p>
+                  {interractOtherPlayer ? (
+                    <p className="bulle"> Yo Romain</p>
+                  ) : (
+                    <p className="pseudo">{player.pseudo}</p>
+                  )}
+                  {/* <p className="pseudo">{player.pseudo}</p> */}
                   <img
                     className="playperPositionImg"
                     src={myPlayer}
@@ -197,7 +209,8 @@ const Board = (props) => {
                 </div>
               ) : square.otherPlayer ? (
                 <div className="playerPosition">
-                  <p className="pseudo">{player.pseudo}</p>
+                  <p className="pseudo">Romain</p>
+
                   <img
                     className="playperPositionImg"
                     src={avatarArray[1]}
