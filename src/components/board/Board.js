@@ -45,7 +45,6 @@ for (let i = 0; i < 168; i += 1) {
   });
 }
 board[137].currentPlayer = true;
-board[17].otherPlayer = true;
 
 // INSTALLATION DE LA MODALE MATERIAL UI
 function rand() {
@@ -101,19 +100,26 @@ const Board = (props) => {
   useEffect(() => {
     const boardUpdated = myBoard.map((square) => {
       for (let i = 0; i < onlinePlayers.length; i += 1) {
-        console.log(onlinePlayers[i].position);
-        console.log(square.id);
-
         if (
           parseInt(onlinePlayers[i].position, 10) === parseInt(square.id, 10)
         ) {
           return { ...square, otherPlayer: true };
         }
       }
-      return { ...square };
+      return { ...square, otherPlayer: false };
     });
     setmyBoard(boardUpdated);
-  }, [onlinePlayers]);
+  }, [playerPosition, onlinePlayers]);
+
+  useEffect(() => {
+    axios
+      .put(`http://wonderful-goat-74.loca.lt/users/${player.pseudo}/edit`, {
+        position: { playerPosition },
+      })
+      .then((res) => {
+        setOnlinePlayers(res);
+      });
+  }, [playerPosition]);
 
   const handlerFilter = () => {
     setIsFiltered(!isFiltered);
@@ -137,15 +143,6 @@ const Board = (props) => {
       setPlayerPosition(id);
       // eslint-disable-next-line no-param-reassign
       draftState[id].currentPlayer = true;
-
-      // instance
-      //   .post(`users/${player.pseudo}/edit`, {
-      //     name: '',
-      //   })
-      //   .then((res) => {
-      //     console.log(res);
-      //     // poster le numéro de sa case
-      //   });
     });
     setmyBoard(nextState);
   };
@@ -191,7 +188,7 @@ const Board = (props) => {
             >
               {square.currentPlayer ? (
                 <div className="playerPosition">
-                  <p>{player.pseudo}</p>
+                  <p className="pseudo">{player.pseudo}</p>
                   <img
                     className="playperPositionImg"
                     src={myPlayer}
@@ -200,6 +197,7 @@ const Board = (props) => {
                 </div>
               ) : square.otherPlayer ? (
                 <div className="playerPosition">
+                  <p className="pseudo">{player.pseudo}</p>
                   <img
                     className="playperPositionImg"
                     src={avatarArray[1]}
@@ -294,7 +292,7 @@ const Board = (props) => {
           onClick={handlerOnLine}
         />
       </div>
-      <ActionBar />
+      <ActionBar player={player} onlinePlayers={onlinePlayers} />
     </div>
   );
 };

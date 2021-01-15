@@ -41,7 +41,7 @@
   justify-content: space-between;
   background-color: rgba(87, 87, 87, 0.431);
   width: 70%;
-  height: 30vh;
+  height: 45vh;
   margin-top: 10px;
   border-radius: 20px;
   padding: 2%;
@@ -178,11 +178,12 @@ button:focus {
 
 .spanEmoji {
   min-width: 10%;
+  max-width: 100px;
+  height: 100%;
   font-family: 'Noto Sans JP', sans-serif;
   color: rgb(209, 176, 84);
   font-weight: bold;
   font-size: 57px;
-  line-height: 4px;
 }
 
 .emoji-picker-react {

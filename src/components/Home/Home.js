@@ -12,7 +12,7 @@ const Home = (props) => {
 
   const addPlayer = () => {
     axios
-      .post(`https://chilly-mayfly-63.loca.lt/add/${player.pseudo}`)
+      .post(`https://wonderful-goat-74.loca.lt/users/add/${player.pseudo}`)
       .then((res) => {
         console.log(res);
       });
