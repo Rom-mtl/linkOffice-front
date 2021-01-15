@@ -278,6 +278,7 @@
   background-image: url('../../images/tapis.png');
   background-size: contain;
   background-repeat: no-repeat;
+  z-index: 3;
   cursor: pointer;
 }
 .planteDeux {
