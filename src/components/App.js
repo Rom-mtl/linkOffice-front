@@ -25,12 +25,6 @@ function App() {
           path="/board"
           render={() => <Board player={player} setPlayer={setPlayer} />}
         />
-        {/* <div className="App">
-      <div className="body">
-        <Board />
-        <ActionBar />
-      </div>
-    </div> */}
       </Switch>
     </Router>
   );

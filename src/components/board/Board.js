@@ -1,5 +1,7 @@
+/* eslint-disable dot-notation */
 /* eslint-disable no-nested-ternary */
-import React, { useState } from 'react';
+
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import produce from 'immer';
@@ -12,17 +14,9 @@ import otherPlayer1 from '../../images/otherplayer1.png';
 import otherPlayer2 from '../../images/otherplayer2.png';
 import otherPlayer3 from '../../images/otherplayer3.png';
 
-// const axios = require('axios');
+const axios = require('axios');
 
 const avatarArray = [otherPlayer1, otherPlayer2, otherPlayer3];
-
-// const instance = axios.create({
-//   baseURL: 'http://wet-rabbit-57.loca.lt/',
-//   headers: {
-//     'Access-Control-Allow-Origin': '*',
-//   },
-// });
-// const config = { headers: { 'Access-Control-Allow-Origin': '*' } };
 
 const boardStyle = {
   width: '100%',
@@ -53,7 +47,6 @@ for (let i = 0; i < 168; i += 1) {
   });
 }
 board[137].currentPlayer = true;
-board[17].otherPlayer = true;
 
 // INSTALLATION DE LA MODALE MATERIAL UI
 function rand() {
@@ -88,6 +81,7 @@ const Board = (props) => {
   const [isFiltered, setIsFiltered] = useState(true);
   const [isWrite, setIsWrite] = useState(true);
   const [isOnline, setIsOnline] = useState(true);
+  const [onlinePlayers, setOnlinePlayers] = useState([]);
   const { player } = props;
   const classes = useStyles();
   // getModalStyle is not a pure function, we roll the style only on the first render
@@ -95,12 +89,42 @@ const Board = (props) => {
   const [open, setOpen] = useState(false);
   const [isQuestion, setQuestion] = useState(false);
   const [isCoffee, setIsCoffee] = useState(false);
+  const [interractOtherPlayer, setInterractOtherPlayer] = useState(false);
 
   // setInterval(() => {
-  //   instance.get('users/').then((res) => {
-  //     console.log(res);
-  //   });
   // }, 5000);
+
+  useEffect(() => {
+    setInterval(() => {
+      axios.get('https://witty-walrus-16.loca.lt/users/').then((res) => {
+        setOnlinePlayers(res.data);
+      });
+    }, 1000);
+  }, []);
+
+  useEffect(() => {
+    const boardUpdated = myBoard.map((square) => {
+      for (let i = 0; i < onlinePlayers.length; i += 1) {
+        if (
+          parseInt(onlinePlayers[i].position, 10) === parseInt(square.id, 10)
+        ) {
+          return { ...square, otherPlayer: true };
+        }
+      }
+      return { ...square, otherPlayer: false };
+    });
+    setmyBoard(boardUpdated);
+  }, [playerPosition, onlinePlayers]);
+
+  useEffect(() => {
+    axios
+      .put(`https://witty-walrus-16.loca.lt/${player.pseudo}/edit`, {
+        position: { playerPosition },
+      })
+      .then((res) => {
+        setOnlinePlayers(res);
+      });
+  }, [playerPosition]);
 
   const handlerFilter = () => {
     setIsFiltered(!isFiltered);
@@ -131,26 +155,22 @@ const Board = (props) => {
   };
 
   const changeSquareContent = (id) => {
-    const nextState = produce(myBoard, (draftState) => {
-      // mettre à jour current player de l'ancienne case à false
-      // mettre à jour le state du player position
-      // mettre à jour current player de l'id en cours
-      // eslint-disable-next-line no-param-reassign
-      draftState[playerPosition].currentPlayer = false;
-      setPlayerPosition(id);
-      // eslint-disable-next-line no-param-reassign
-      draftState[id].currentPlayer = true;
-
-      // instance
-      //   .post(`users/${player.pseudo}/edit`, {
-      //     name: '',
-      //   })
-      //   .then((res) => {
-      //     console.log(res);
-      //     // poster le numéro de sa case
-      //   });
-    });
-    setmyBoard(nextState);
+    if (myBoard[id].otherPlayer === true) {
+      setInterractOtherPlayer(true);
+    } else {
+      setInterractOtherPlayer(false);
+      const nextState = produce(myBoard, (draftState) => {
+        // mettre à jour current player de l'ancienne case à false
+        // mettre à jour le state du player position
+        // mettre à jour current player de l'id en cours
+        // eslint-disable-next-line no-param-reassign
+        draftState[playerPosition].currentPlayer = false;
+        setPlayerPosition(id);
+        // eslint-disable-next-line no-param-reassign
+        draftState[id].currentPlayer = true;
+      });
+      setmyBoard(nextState);
+    }
   };
 
   const handleOpen = () => {
@@ -200,7 +220,12 @@ const Board = (props) => {
             >
               {square.currentPlayer ? (
                 <div className="playerPosition">
-                  <p>{player.pseudo}</p>
+                  {interractOtherPlayer ? (
+                    <p className="bulle"> Yo Romain</p>
+                  ) : (
+                    <p className="pseudo">{player.pseudo}</p>
+                  )}
+                  {/* <p className="pseudo">{player.pseudo}</p> */}
                   <img
                     className="playperPositionImg"
                     src={animatedPlayer()}
@@ -209,6 +234,8 @@ const Board = (props) => {
                 </div>
               ) : square.otherPlayer ? (
                 <div className="playerPosition">
+                  <p className="pseudo">Romain</p>
+
                   <img
                     className="playperPositionImg"
                     src={avatarArray[1]}
@@ -320,7 +347,7 @@ const Board = (props) => {
           onClick={handlerOnLine}
         />
       </div>
-      <ActionBar />
+      <ActionBar player={player} onlinePlayers={onlinePlayers} />
     </div>
   );
 };
