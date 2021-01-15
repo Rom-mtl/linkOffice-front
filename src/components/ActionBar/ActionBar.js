@@ -12,6 +12,8 @@ import more from '../../images/more.png';
 const ActionBar = (props) => {
   const { player, onlinePlayers } = props;
 
+  console.log(onlinePlayers);
+
   const [chosenEmoji, setChosenEmoji] = useState(null);
 
   const onEmojiClick = (event, emojiObject) => {
