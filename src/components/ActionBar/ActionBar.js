@@ -15,6 +15,7 @@ const ActionBar = () => {
   const onEmojiClick = (event, emojiObject) => {
     setChosenEmoji(emojiObject);
   };
+  // const { player } = props;
 
   return (
     <div className="actionBar">
@@ -92,6 +93,7 @@ const ActionBar = () => {
         </div>
       </div>
       <div className="application">
+        <div className="logo2" />
         <div className="smiley">
           {chosenEmoji ? (
             <span className="spanEmoji">
