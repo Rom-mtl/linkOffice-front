@@ -106,10 +106,20 @@ const Board = (props) => {
           return { ...square, otherPlayer: true };
         }
       }
-      return { ...square };
+      return { ...square, otherPlayer: false };
     });
     setmyBoard(boardUpdated);
-  }, [onlinePlayers]);
+  }, [playerPosition, onlinePlayers]);
+
+  useEffect(() => {
+    axios
+      .put(`http://wonderful-goat-74.loca.lt/users/${player.pseudo}/edit`, {
+        position: { playerPosition },
+      })
+      .then((res) => {
+        setOnlinePlayers(res);
+      });
+  }, [playerPosition]);
 
   const handlerFilter = () => {
     setIsFiltered(!isFiltered);
@@ -133,13 +143,6 @@ const Board = (props) => {
       setPlayerPosition(id);
       // eslint-disable-next-line no-param-reassign
       draftState[id].currentPlayer = true;
-
-      axios.put(
-        `http://wonderful-goat-74.loca.lt/users/${player.pseudo}/edit`,
-        {
-          position: { playerPosition },
-        }
-      );
     });
     setmyBoard(nextState);
   };
